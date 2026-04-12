@@ -9,15 +9,17 @@ load_dotenv()
 def create_app(test_config=None):
     app = Flask(__name__)
 
+    app.config.from_mapping(
+        SECRET_KEY=os.environ.get('SECRET_KEY', 'dev'),
+        SQLALCHEMY_DATABASE_URI=os.environ.get('DATABASE_URL'),
+        SQLALCHEMY_TRACK_MODIFICATIONS=False,
+    )
+
     if test_config:
         app.config.update(test_config)
     else:
 
         pass
-
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
     # Inicializa as extensões com a instância da aplicação atual
     db.init_app(app)
