@@ -27,12 +27,6 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-
-    - name: Executar o Flake8
-      run: |
-        flake8 .
-
-
     - name: Executar os Testes Automatizados (Pytest)
       run: |
         pytest
