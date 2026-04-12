@@ -1,0 +1,38 @@
+name: CI MedControl
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+
+jobs:
+  build-and-test:
+  
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Fazer o Checkout do código
+      uses: actions/checkout@v4
+
+    - name: Configurar o ambiente Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.13"
+
+  
+    - name: Instalar dependências (Bibliotecas)
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+
+    - name: Executar o Flake8
+      run: |
+        flake8 .
+
+
+    - name: Executar os Testes Automatizados (Pytest)
+      run: |
+        pytest
