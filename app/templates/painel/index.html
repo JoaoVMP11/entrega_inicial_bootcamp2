@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Meus Medicamentos</h2>
+    <p>Confira sua lista de remédios e horários.</p>
+
+    {% if not remedios %}
+        <p>Você ainda não tem remédios cadastrados.</p>
+        <p><a href="{{ url_for('medicamentos.cadastrar') }}">Cadastrar meu primeiro remédio</a></p>
+    {% else %}
+        <ul>
+        {% for remedio in remedios %}
+            <li>
+                <h3>{{ remedio.nome }}</h3>
+                <p>Dosagem: {{ remedio.dosagem }}</p>
+                <p>Horários Previstos:</p>
+                <ul>
+                    {% for horario in remedio.horarios %}
+                        <li>{{ horario.hora_prevista.strftime('%H:%M') }}</li>
+                    {% else %}
+                        <li>Nenhum horário cadastrado.</li>
+                    {% endfor %}
+                </ul>
+            </li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}

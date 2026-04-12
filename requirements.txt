@@ -1,0 +1,7 @@
+Flask
+Flask-SQLAlchemy
+Flask-Migrate
+python-dotenv
+PyMySQL
+flake8
+pytest

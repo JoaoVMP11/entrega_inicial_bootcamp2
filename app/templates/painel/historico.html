@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Histórico de Medicamentos</h2>
+    <p>Acompanhe os remédios que foram tomados corretamente.</p>
+
+    {% if not registros %}
+        <p>Nenhum registro encontrado no histórico.</p>
+    {% else %}
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Horário Previsto</th>
+                    <th>Remédio</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for registro in registros %}
+                <tr>
+                    <td>{{ registro.data_registro.strftime('%d/%m/%Y') }}</td>
+                    <td>{{ registro.horario_ref.hora_prevista.strftime('%H:%M') }}</td>
+                    <td>{{ registro.horario_ref.remedio.nome }}</td>
+                    <td>Tomado</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Cadastrar Novo Remédio</h2>
+
+    <form action="{{ url_for('medicamentos.cadastrar') }}" method="POST">
+        <p>
+            <label for="nome">Nome do Remédio:</label><br>
+            <input type="text" id="nome" name="nome" required>
+        </p>
+        
+        <p>
+            <label for="dosagem">Dosagem (ex: 50mg, 2 gotas):</label><br>
+            <input type="text" id="dosagem" name="dosagem">
+        </p>
+        
+        <p>Horários (preencha os que precisar):</p>
+        <p><input type="time" name="horarios"></p>
+        <p><input type="time" name="horarios"></p>
+        <p><input type="time" name="horarios"></p>
+        <p><input type="time" name="horarios"></p>
+
+        <p><button type="submit">Salvar Remédio</button></p>
+    </form>
+{% endblock %}

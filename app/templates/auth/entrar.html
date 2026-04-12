@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Entrar - MedControl</title>
+</head>
+<body>
+    <h2>Bem-vindo ao MedControl</h2>
+    <p>Informe seus dados para acessar ou criar sua conta automaticamente.</p>
+
+    <form action="{{ url_for('auth.entrar') }}" method="POST">
+        <p>
+            <label for="nome">Qual o seu nome?</label><br>
+            <input type="text" id="nome" name="nome" required>
+        </p>
+        <p>
+            <label for="email">Qual o seu e-mail?</label><br>
+            <input type="email" id="email" name="email" required>
+        </p>
+        <p><button type="submit">Acessar Painel</button></p>
+    </form>
+</body>
+</html>

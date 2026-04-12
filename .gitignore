@@ -1,0 +1,28 @@
+# Ambientes Virtuais (Essencial para não subir bibliotecas pesadas)
+venv/
+env/
+
+# Variáveis de Ambiente (Essencial por segurança, para não vazar senhas)
+.env
+.flaskenv
+
+# Bancos de Dados Locais e Arquivos Temporários
+*.db
+*.sqlite
+*.sqlite3
+
+__pycache__/
+*.py[cod]
+*$py.class
+
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Ferramentas de Linting e VS Code
+.flake8
+.vscode/
+
+# Arquivos de Sistema Operacional
+.DS_Store
+Thumbs.db

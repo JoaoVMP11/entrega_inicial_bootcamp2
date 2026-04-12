@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Controle Diário - {{ hoje.strftime('%d/%m/%Y') }}</h2>
+    <p>Marque os remédios que você já tomou hoje.</p>
+
+    {% if not horarios %}
+        <p>Nenhum remédio cadastrado para hoje.</p>
+    {% else %}
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Horário</th>
+                    <th>Remédio</th>
+                    <th>Dosagem</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for horario in horarios %}
+                <tr>
+                    <td>{{ horario.hora_prevista.strftime('%H:%M') }}</td>
+                    <td>{{ horario.remedio.nome }}</td>
+                    <td>{{ horario.remedio.dosagem }}</td>
+                    <td>
+                        {% if horario.id in tomados_ids %}
+                            <b>Tomado</b>
+                        {% else %}
+                            <form action="{{ url_for('medicamentos.marcar_tomado', horario_id=horario.id) }}" method="POST">
+                                <button type="submit">Marcar como Tomado</button>
+                            </form>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+{% endblock %}

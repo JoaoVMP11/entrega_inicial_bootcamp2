@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Controle de Medicamentos</title>
+</head>
+<body>
+    <header>
+        <h1>MedControl</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('painel.index') }}">Meus Remédios</a></li>
+                <li><a href="{{ url_for('medicamentos.controle_diario') }}">Controle Diário</a></li>
+                <li><a href="{{ url_for('medicamentos.cadastrar') }}">Cadastrar Novo</a></li>
+                <li><a href="{{ url_for('painel.historico') }}">Histórico</a></li>
+                <li><a href="{{ url_for('auth.sair') }}">Sair do Perfil</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <hr>
+
+    <main>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul>
+                {% for message in messages %}
+                    <li><b>Aviso:</b> {{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}
+        {% endblock %}
+    </main>
+
+</body>
+</html>
