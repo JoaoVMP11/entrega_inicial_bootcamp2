@@ -6,9 +6,14 @@ from app.extensions import db, migrate
 load_dotenv()
 
 
-def create_app():
+def create_app(test_config=None):
     app = Flask(__name__)
 
+    if test_config:
+        app.config.update(test_config)
+    else:
+
+        pass
 
     app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
