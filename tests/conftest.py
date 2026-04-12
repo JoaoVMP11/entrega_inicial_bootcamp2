@@ -4,18 +4,18 @@ from app.extensions import db
 
 @pytest.fixture
 def app():
-    # Cria a aplicação com as configurações normais
-    app = create_app()
-    
-    # Sobrescreve as configurações para focar no ambiente de testes
-    app.config.update({
+    # Criamos um dicionário com as configurações de teste
+    test_config = {
         "TESTING": True,
-        # Usa um banco SQLite na memória RAM, que é apagado no final do teste
         "SQLALCHEMY_DATABASE_URI": "sqlite:///:memory:",
-        "WTF_CSRF_ENABLED": False, # Desativa segurança de formulários nos testes
-    })
-
-    # Cria o banco de dados temporário e injeta o contexto da aplicação
+        "WTF_CSRF_ENABLED": False,
+        "SECRET_KEY": "test-key"
+    }
+    
+    # Passamos esse dicionário para a sua factory
+    # Certifique-se de que sua função create_app(config_mix=None) aceite um argumento
+    app = create_app(test_config)
+    
     with app.app_context():
         db.create_all()
         yield app
