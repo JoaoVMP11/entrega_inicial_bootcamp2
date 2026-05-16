@@ -1,6 +1,6 @@
 # MedControl
 
-**Versão Atual:** 1.0.0
+**Versão Atual:** 1.0.1
 
 ## Descrição do Problema Real
 O gerenciamento de múltiplas medicações é um desafio constante para a população idosa. A confusão com horários e dosagens frequentemente leva ao esquecimento de doses ou, em casos mais graves, à superdosagem acidental. Essa falta de controle compromete a eficácia dos tratamentos médicos e reduz a autonomia do idoso, gerando também ansiedade para os familiares e cuidadores que não possuem um meio centralizado e confiável para acompanhar a rotina médica.
@@ -13,10 +13,13 @@ O MedControl é uma aplicação web focada em usabilidade e simplicidade. A solu
 - **Cuidadores e Familiares:** Que precisam gerenciar a rotina medicamentosa de um ou mais pacientes de forma organizada em um único dispositivo.
 
 ## Funcionalidades Principais
-- **Soft Login (Gestão de Sessão):** Acesso rápido ao perfil informando apenas nome e e-mail.
+- **Soft Login (Gestão de Sessão):** Acesso rápido ao perfil informando apenas nome e e-mail, focado na facilidade de uso para idosos.
 - **Cadastro de Medicamentos:** Registro de remédios com suas respectivas dosagens e múltiplos horários.
 - **Controle Diário (Checklist):** Tela dinâmica que lista os remédios do dia, permitindo marcar cada dose como concluída para evitar duplicidades.
 - **Histórico de Adesão:** Relatório gerencial listando todos os medicamentos tomados corretamente nos dias anteriores.
+- **Mensagem Inspiradora Diária:** Integração dinâmica com APIs públicas (com tradução em tempo real) para exibir mensagens motivacionais no painel de controle do paciente.
+- **Testes Automatizados:** Suíte de testes configurada com Pytest, utilizando banco de dados em memória (SQLite) para validação rápida e segura das rotas e regras de negócio.
+- **Integração Contínua (CI):** Pipeline configurado com GitHub Actions que executa automaticamente análise estática (Flake8) e testes a cada novo envio de código.
 
 ## Tecnologias Utilizadas
 - **Backend:** Python 3, Flask (Blueprints, Application Factory)

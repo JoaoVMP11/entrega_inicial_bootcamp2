@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request, redirect, url_for, flash
 from app.extensions import db
 from app.models.remedio import Remedio, Horario
 from app.models.registro import RegistroDiario
+from app.utils import obter_frase_do_dia
 from datetime import date, datetime
 from flask import session
 
@@ -60,12 +61,15 @@ def controle_diario():
     # Descobre quais horários já ganharam "check" hoje
     registros_hoje = RegistroDiario.query.filter_by(data_registro=hoje).all()
     horarios_tomados_ids = [registro.horario_id for registro in registros_hoje if registro.status]
+
+    frase_motivacional = obter_frase_do_dia()
     
     return render_template(
         'medicamentos/controle.html', 
         horarios=horarios_previstos, 
         tomados_ids=horarios_tomados_ids, 
-        hoje=hoje
+        hoje=hoje, 
+        frase_do_dia=frase_motivacional
     )
 
 @medicamentos_bp.route('/marcar/<int:horario_id>', methods=['POST'])
